@@ -1,0 +1,26 @@
+packages:
+  - tooling/*
+  - packages/*
+  - apps/*
+
+autoInstallPeers: true
+
+catalog:
+  '@types/node': 24.10.9
+  typescript: 5.9.3
+
+linkWorkspacePackages: false
+
+onlyBuiltDependencies:
+  - core-js-pure
+
+overrides:
+  node-fetch: npm:node-fetch-native@latest
+
+preferWorkspacePackages: true
+
+savePrefix: ''
+
+saveWorkspaceProtocol: rolling
+
+shamefullyHoist: true

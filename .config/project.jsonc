@@ -1,0 +1,8 @@
+{
+  "appId": "com.electron.app",
+  "applicationName": "jm-electron-app",
+  "logFileName": "jm-app-electron.log",
+  "nameShort": "JM Electron App",
+  "nameLong": "JM Electron App",
+  "productName": "jm-app-electron",
+}

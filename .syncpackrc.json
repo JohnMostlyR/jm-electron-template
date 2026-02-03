@@ -1,0 +1,62 @@
+{
+  "$schema": "./node_modules/syncpack/dist/schema.json",
+  "indent": "    ",
+  "lintFormatting": false,
+  "sortAz": ["dependencies", "devDependencies", "peerDependencies", "scripts"],
+  "semverGroups": [
+    {
+      "label": "Pin exact versions for Electron app production dependencies",
+      "range": "",
+      "dependencies": ["**"],
+      "dependencyTypes": ["prod"],
+      "packages": ["@jm-app/**"]
+    },
+    {
+      "label": "Allow caret ranges for development dependencies",
+      "range": "^",
+      "dependencies": ["**"],
+      "dependencyTypes": ["dev"],
+      "specifierTypes": ["range"]
+    },
+    {
+      "label": "Allow caret ranges for tooling packages",
+      "range": "^",
+      "dependencies": ["**"],
+      "packages": [
+        "@jm-monorepo/eslint-config",
+        "@jm-monorepo/prettier-config",
+        "@jm-monorepo/typescript-config",
+        "@jm-monorepo/vitest-config"
+      ],
+      "specifierTypes": ["range"]
+    },
+    {
+      "label": "Allow caret ranges for scoped packages in libraries",
+      "range": "^",
+      "dependencies": ["@*"],
+      "packages": ["@jm-monorepo/**"],
+      "dependencyTypes": ["prod", "peer"]
+    }
+  ],
+  "versionGroups": [
+    {
+      "label": "Use workspace protocol for local packages",
+      "dependencies": ["@jm-monorepo/**", "@jm-app/**"],
+      "dependencyTypes": ["dev", "peer", "prod"],
+      "pinVersion": "workspace:*"
+    },
+    {
+      "label": "Ensure catalog dependencies stay in sync",
+      "dependencies": [
+        "typescript",
+        "vitest",
+        "@vitest/**",
+        "vite",
+        "eslint",
+        "@eslint/**",
+        "prettier"
+      ],
+      "pinVersion": "catalog:"
+    }
+  ]
+}

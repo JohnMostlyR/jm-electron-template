@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node: [22, 24]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          ref: ${{ github.head_ref }}
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Turbo lint (affected only)
+        run: pnpm turbo run lint --filter=...[HEAD^]
+
+      - name: Turbo format (affected only)
+        run: pnpm turbo run format --filter=...[HEAD^]
+
+      - name: Turbo test (affected only)
+        run: pnpm turbo run test --filter=...[HEAD^]
+
+      - name: Turbo build (affected only)
+        run: pnpm turbo run build --filter=...[HEAD^]

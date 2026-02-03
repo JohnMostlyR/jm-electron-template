@@ -1,0 +1,123 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "globalEnv": [],
+  "globalPassThroughEnv": [
+    "CI",
+    "DEBUG_COLORS",
+    "DEBUG_DEPTH",
+    "DEBUG_HIDE_DATE",
+    "DEBUG_SHOW_HIDDEN",
+    "DEBUG",
+    "NODE_ENV",
+    "VITEST",
+    "npm_lifecycle_event",
+    "npm_package_version"
+  ],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env"],
+      "outputs": [
+        "dist/**",
+        "out/**",
+        "build/**",
+        ".output/**"
+      ],
+      "env": [
+        "NODE_ENV"
+      ]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.js",
+        "src/**/*.jsx",
+        "*.config.js",
+        "*.config.ts",
+        ".eslintrc*",
+        "eslint.config.*"
+      ]
+    },
+    "lint:fix": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "inputs": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.js",
+        "src/**/*.jsx",
+        "*.config.js",
+        "*.config.ts",
+        ".eslintrc*",
+        "eslint.config.*"
+      ]
+    },
+    "format": {
+      "inputs": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.js",
+        "src/**/*.jsx",
+        "src/**/*.json",
+        "src/**/*.md",
+        ".prettierrc*",
+        "prettier.config.*"
+      ],
+      "outputs": []
+    },
+    "format:fix": {
+      "cache": false,
+      "inputs": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.js",
+        "src/**/*.jsx",
+        "src/**/*.json",
+        "src/**/*.md",
+        ".prettierrc*",
+        "prettier.config.*"
+      ]
+    },
+    "typecheck": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "tsconfig.json",
+        "tsconfig.*.json"
+      ],
+      "outputs": []
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "tests/**/*.ts",
+        "**/*.test.ts",
+        "**/*.spec.ts",
+        "vitest.config.*",
+        "tsconfig.json"
+      ],
+      "outputs": ["coverage/**"]
+    },
+    "test:watch": {
+      "cache": false,
+      "persistent": true
+    },
+    "coverage": {
+      "dependsOn": ["test"],
+      "outputs": ["coverage/**"]
+    },
+    "clean": {
+      "cache": false
+    }
+  },
+  "ui": "tui"
+}

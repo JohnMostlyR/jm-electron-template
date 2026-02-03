@@ -1,0 +1,41 @@
+{
+  "name": "root",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "build": "turbo run build",
+    "clean": "git clean -xdf .turbo logs node_modules",
+    "clean:workspaces": "turbo run clean",
+    "coverage": "turbo run coverage",
+    "deps:check": "pnpm update --recursive --interactive",
+    "deps:verify": "pnpm lint:repo && pnpm typecheck && pnpm test",
+    "format": "turbo run format --continue -- --cache --cache-location .cache/.prettiercache",
+    "format:fix": "turbo run format --continue -- --write --cache --cache-location .cache/.prettiercache",
+    "format:pkg": "pnpm dlx sort-package-json@latest \"package.json\" \"**/package.json\" --ignore \"**/node_modules/**\"",
+    "postinstall": "pnpm lint:repo",
+    "lint": "turbo run lint --continue -- --cache --cache-location .cache/.eslintcache",
+    "lint:fix": "turbo run lint --continue -- --fix --cache --cache-location .cache/.eslintcache",
+    "lint:repo": "pnpm sync:lint",
+    "sync:lint": "syncpack lint",
+    "sync:versions": "syncpack fix-mismatches",
+    "test": "turbo run test --continue",
+    "test:watch": "turbo run test:watch",
+    "typecheck": "turbo run typecheck --continue"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.8",
+    "@manypkg/cli": "^0.25.1",
+    "@turbo/gen": "^2.8.2",
+    "@types/node": "catalog:",
+    "syncpack": "^13.0.4",
+    "ts-morph": "27.0.2",
+    "turbo": "^2.8.2",
+    "typescript": "catalog:"
+  },
+  "packageManager": "pnpm@10.28.2+sha512.41872f037ad22f7348e3b1debbaf7e867cfd448f2726d9cf74c08f19507c31d2c8e7a11525b983febc2df640b5438dee6023ebb1f84ed43cc2d654d2bc326264",
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=10"
+  }
+}
