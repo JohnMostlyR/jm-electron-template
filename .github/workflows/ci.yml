@@ -1,5 +1,4 @@
 name: CI
-
 permissions:
   contents: read
 
@@ -18,18 +17,18 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 2
           ref: ${{ github.head_ref }}
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v5
         with:
           version: 10
 
       - name: Use Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
           cache: "pnpm"
@@ -37,14 +36,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Turbo lint (affected only)
-        run: pnpm turbo run lint --filter=...[HEAD^]
+      - name: Run linting (affected only)
+        run: pnpm --filter=...[HEAD^] lint
 
-      - name: Turbo format (affected only)
-        run: pnpm turbo run format --filter=...[HEAD^]
+      - name: Check formatting (affected only)
+        run: pnpm --filter=...[HEAD^] format
 
-      - name: Turbo test (affected only)
-        run: pnpm turbo run test --filter=...[HEAD^]
+      - name: Run type checking (affected only)
+        run: pnpm --filter=...[HEAD^] typecheck
 
-      - name: Turbo build (affected only)
-        run: pnpm turbo run build --filter=...[HEAD^]
+      - name: Run tests (affected only)
+        run: pnpm --filter=...[HEAD^] test
+
+      - name: Build (affected only)
+        run: pnpm --filter=...[HEAD^] build
