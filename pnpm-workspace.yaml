@@ -6,7 +6,7 @@ packages:
 autoInstallPeers: true
 
 catalog:
-  '@types/node': 24.10.9
+  '@types/node': 25.6.0
   typescript: 5.9.3
 
 linkWorkspacePackages: false
