@@ -24,7 +24,7 @@
     "typecheck": "turbo run typecheck --continue"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.30.0",
+    "@changesets/cli": "^2.31.0",
     "@manypkg/cli": "^0.25.1",
     "@turbo/gen": "^2.9.6",
     "@types/node": "catalog:",
