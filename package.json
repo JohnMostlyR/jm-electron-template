@@ -28,7 +28,7 @@
     "@manypkg/cli": "^0.25.1",
     "@turbo/gen": "^2.9.6",
     "@types/node": "catalog:",
-    "syncpack": "^13.0.4",
+    "syncpack": "^14.3.0",
     "ts-morph": "27.0.2",
     "turbo": "^2.9.6",
     "typescript": "catalog:"
