@@ -29,7 +29,7 @@
     "@turbo/gen": "^2.9.6",
     "@types/node": "catalog:",
     "syncpack": "^13.0.4",
-    "ts-morph": "27.0.2",
+    "ts-morph": "28.0.0",
     "turbo": "^2.9.6",
     "typescript": "catalog:"
   },
